@@ -43,14 +43,6 @@ androidmk.cflags = {
   }
 }
 
-androidmk.cppflags = {
-  flags = {
-    ["C++11"] = "-std=c++11",
-    ["C++14"] = "-std=c++14",
-  }
-}
-
-
 include "androidmk_api.lua"
 include "androidmk_solution.lua"
 include "androidmk_project.lua"

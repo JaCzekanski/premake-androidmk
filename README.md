@@ -14,14 +14,11 @@ Note : All the fields starting with `ndk` are solution-wide, but filters can be 
 `ndkabi` : ABI targets
 
 Supported values :
-Wanted ABIs separated by spaces (e.g. `"armeabi x86 mips"`)
-* `armeabi`
+Wanted ABIs separated by spaces (e.g. `"armeabi-v7a x86"`)
 * `armeabi-v7a`
 * `arm64-v8a`
 * `x86`
 * `x86_64`
-* `mips`
-* `mips64`
 
 Or one of :
 * `default`
@@ -33,20 +30,19 @@ Or one of :
 
 Supported values :
 * `default`
-* `android-3`
-* `android-4`
-* `android-5`
-* `android-8`
-* `android-9`
-* `android-12`
-* `android-13`
-* `android-14`
-* `android-15`
 * `android-16`
 * `android-17`
 * `android-18`
 * `android-19`
 * `android-21`
+* `android-22`
+* `android-23`
+* `android-24`
+* `android-25`
+* `android-26`
+* `android-27`
+* `android-28`
+* `android-29`
 
 *****
 
@@ -54,27 +50,9 @@ Supported values :
 
 Supported values :
 * `default`
-* `libstdc++`
-* `gabi++_static`
-* `gabi++_shared`
-* `stlport_static`
-* `stlport_shared`
-* `gnustl_static`
-* `gnustl_shared`
 * `c++_static`
 * `c++_shared`
 
-*****
-
-`ndktoolchainversion` : Android toolchain version
-
-Supported values :
-* `default`
-* `4.8`
-* `4.9`
-* `clang`
-* `clang3.4`
-* `clang3.5`
 
 *****
 
@@ -132,7 +110,7 @@ solution "MySolution"
 	location "android/jni" -- Generate files in android project jni folder (recommended)
 
 	ndkabi "all"
-	ndkplatform "android-12"
+	ndkplatform "android-16"
 
 	filter "configurations:Release"
 		optimize "On"

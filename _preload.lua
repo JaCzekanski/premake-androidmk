@@ -6,8 +6,6 @@
 
 premake.extensions.androidmk = premake.extensions.androidmk or {}
 local androidmk = premake.extensions.androidmk
-local make = premake.make
-
 
 androidmk.CONFIG_OPTION = "PM5_CONFIG"
 
@@ -18,6 +16,8 @@ newaction {
   description     = "Generate Android.mk files for Android NDK",
 
   valid_kinds     = { 
+    premake.CONSOLEAPP,
+    premake.WINDOWAPP,
     premake.STATICLIB,
     premake.SHAREDLIB,
   },
@@ -26,13 +26,13 @@ newaction {
 
 
   onSolution = function(sln)
-    premake.escaper(make.esc)
+    premake.escaper(premake.modules.gmake.esc)
     premake.generate(sln, androidmk.slnApplicationFile(sln), androidmk.generate_applicationmk)
     premake.generate(sln, androidmk.slnAndroidFile(sln), androidmk.generate_androidmk)
   end,
 
   onProject = function(prj)
-    premake.escaper(make.esc)
+    premake.escaper(premake.modules.gmake.esc)
     premake.generate(prj, androidmk.prjFile(prj), androidmk.generate_projectmk)
   end,
 

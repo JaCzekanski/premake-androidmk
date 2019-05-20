@@ -27,7 +27,6 @@ function androidmk.generate_applicationmk(sln)
     androidmk.slnAbi(sln, cfg)
     androidmk.slnPlatform(sln, cfg)
     androidmk.slnStl(sln, cfg)
-    androidmk.slnToolchainVersion(sln, cfg)
 
     p.w('  PM5_HELP := false')
     p.w('endif')
@@ -164,12 +163,5 @@ function androidmk.slnStl(sln, cfg)
   local stl = agregateOption(sln, cfg, "ndkstl")
   if stl then
     p.w('  APP_STL := %s', stl)
-  end
-end
-
-function androidmk.slnToolchainVersion(sln, cfg)
-  local toolchain = agregateOption(sln, cfg, "ndktoolchainversion")
-  if toolchain then
-    p.w('  NDK_TOOLCHAIN_VERSION := %s', toolchain)
   end
 end

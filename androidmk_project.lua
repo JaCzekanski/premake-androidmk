@@ -50,12 +50,10 @@ function androidmk.prjHeader(prj)
 end
 
 function androidmk.prjKind(prj, cfg)
-  if cfg.kind == premake.STATICLIB  then
-    p.w('  include $(BUILD_STATIC_LIBRARY)')
-
-  else -- cfg.kind == premake.SHAREDLIB
+  if cfg.kind == premake.SHAREDLIB or cfg.kind == premake.CONSOLEAPP or cfg.kind == premake.WINDOWAPP then
     p.w('  include $(BUILD_SHARED_LIBRARY)')
-
+  else -- cfg.kind == premake.STATICLIB 
+    p.w('  include $(BUILD_STATIC_LIBRARY)')
   end
 end
 
@@ -235,9 +233,17 @@ function androidmk.prjCFlags(prj, cfg)
   end
 
 
-  local cppflags = premake.config.mapFlags(cfg, androidmk.cppflags)
+  local cppdialect = '-std=c++98'
 
-  if #cppflags > 0 then
-    p.w('  LOCAL_CPPFLAGS := %s', table.implode(table.translate(cppflags, p.esc), '', '', ' '))
+  if (cfg.cppdialect == "C++98") then
+    cppdialect = '-std=c++14'
+  elseif (cfg.cppdialect == "C++11") then
+    cppdialect = '-std=c++14'
+  elseif (cfg.cppdialect == "C++14") then
+    cppdialect = '-std=c++14'
+  elseif (cfg.cppdialect == "C++17") then
+    cppdialect = '-std=c++17'
   end
+
+  p.w('  LOCAL_CPPFLAGS := %s', cppdialect)
 end
